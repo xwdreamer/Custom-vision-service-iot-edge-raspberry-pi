@@ -54,7 +54,7 @@
               "SHOW_VIDEO":  {"value": "True"}
             },
             "settings": {
-              "image": "${MODULES.CameraCapture.arm32v7}",
+              "image": "hub.baidubce.com/azure/cameracapture:0.5.0-arm32v7",
               "createOptions": {
                 "HostConfig": {
                   "PortBindings": {
@@ -75,7 +75,7 @@
               "THRESHOLD": {"value": "0.6"}
             },
             "settings": {
-              "image": "${MODULES.SenseHatDisplay.arm32v7}",
+              "image": "hub.baidubce.com/azure/sensehatdisplay:0.5.0-arm32v7",
               "createOptions": {
                 "HostConfig":{
                   "Binds":["/dev/i2c1:/dev/i2c1"],
@@ -90,8 +90,14 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.ImageClassifierService.arm32v7}",
-              "createOptions": ""
+              "image": "hub.baidubce.com/azure/imageclassifierservice:0.5.0-arm32v7",
+              "createOptions": {
+                "HostConfig": {
+                  "PortBindings": {
+                    "80/tcp": [ { "HostPort":"80"}]
+                  }
+                }
+              }
             }
           }
         }
